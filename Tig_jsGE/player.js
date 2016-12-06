@@ -86,13 +86,14 @@ class PlayerClass {
         this.process = () => {
             if (this.active) {
 
+                /*
                 if (this.jumping) {
                     this.y -= 10; // JumpForce
                     this.y += this.Gravity * 2;
                     this.Gravity *= 1.055;
                     if (this.Gravity >= MAXIMUM_GRAVITY)
                         this.Gravity = MAXIMUM_GRAVITY;
-                }
+                } */
 
                 // Process player movement (friction)
                 if (this.gravityType == 1) {
