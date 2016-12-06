@@ -1,11 +1,8 @@
 var SpriteSilentLoad = false; // Do not output to loading state to console; if enabled.
 var Sprite = function(fn) {
-    
     var that = this;
     var root = this;
-    
     this.filename = fn;
-    
     this.TO_RADIANS = Math.PI/180;
     this.image = null;
     this.is_pattern = false;
@@ -14,7 +11,22 @@ var Sprite = function(fn) {
     this.width = 0;
     this.height = 0;
     this.image = null;
-    this.load = function(filename) { this.image = new Image(); this.image.onload = function(event) { that.width = this.width; that.height = this.height; if (SpriteSilentLoad) { console.log("Loaded sprite (" + that.width + "x" + that.height + ")" + fn);  } window.ResourceId++;  }; this.image.src = filename; return this; };
+    this.load = function(filename) {
+        this.image = new Image();
+        this.image.onload = function(event) {
+            that.width = this.width;
+            that.height = this.height;
+            if (SpriteSilentLoad)
+                console.log("Loaded sprite (" + that.width + "x" + that.height + ")" + fn);
+            window.ResourceId++;
+            if (window.ResourceId >= game.resourceNumber) {
+                game.ResourcesLoaded = true;
+                console.log("All resources have finished downloading.");
+            }
+        };
+        this.image.src = filename;
+        return this;
+    };
     this.to_pattern = function(x_times) { this.pattern_x_times = x_times; this.pattern = Context.context.createPattern(this.image, 'repeat'); this.is_pattern = true; };
     this.spritesheet = null;    
     this.rect = new Rectangle(0, 0, 0, 0);

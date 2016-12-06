@@ -71,6 +71,9 @@
     <script src = 'Tig_jsGE/celestial.js?v=1' type = 'text/javascript'></script>
     <script src = 'Tig_jsGE/timeline.js' type = 'text/javascript'></script>
 
+    <!-- Includes unique to the "Remote Control" game //-->
+    <script src = 'game/unit.js' type = 'text/javascript'></script>
+
     <script type = "text/javascript">
 
         /** ----- Custom objects ----- **/
@@ -90,6 +93,12 @@
         var fox = new Sprite("fox.png");
 
         var des = new Sprite("des.png");
+
+        var units = new Array();
+
+        for (var i = 0; i < 8; i++) {
+            units[i] = new Unit(200,200,0);
+        }
 
         var H2 = 0;
         var A1 = 169;
@@ -214,13 +223,9 @@
                             var appropriateName = json[i].split(".")[0];
                             window.LoadingFileName = json[i];
                             window[appropriateName] = new Sprite("resources/" + window.LoadingFileName);
-							console.log(i + " loaded... ("+appropriateName+")");
+							//console.log(i + " loaded... ("+appropriateName+")");
                         }
                     }
-
-                    // Graphics resources finished loading
-                    game.ResourcesLoaded = true;
-
                     BoxManager.load(); // Load box objects
                 }});
 
@@ -367,7 +372,16 @@
                     // Draw player
                     Player.process();
                     Player.draw();
-                    //Player.collide(); // Collide player with the world
+                    Player.collide_topdown(); // Collide player(s) with the world
+
+                    if (game.ResourcesLoaded)
+                    {
+                        for (var i=0;i<8;i++) {     // Draw units
+                            units[i].draw();
+                        }
+                    }
+
+
 
 
                     gfx.globalAlpha = 0.35;

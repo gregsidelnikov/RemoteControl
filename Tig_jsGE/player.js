@@ -87,13 +87,13 @@ class PlayerClass {
             if (this.active) {
 
                 /*
-                if (this.jumping) {
-                    this.y -= 10; // JumpForce
-                    this.y += this.Gravity * 2;
-                    this.Gravity *= 1.055;
-                    if (this.Gravity >= MAXIMUM_GRAVITY)
-                        this.Gravity = MAXIMUM_GRAVITY;
-                } */
+                 if (this.jumping) {
+                 this.y -= 10; // JumpForce
+                 this.y += this.Gravity * 2;
+                 this.Gravity *= 1.055;
+                 if (this.Gravity >= MAXIMUM_GRAVITY)
+                 this.Gravity = MAXIMUM_GRAVITY;
+                 } */
 
                 // Process player movement (friction)
                 if (this.gravityType == 1) {
@@ -105,8 +105,8 @@ class PlayerClass {
 
                 // Drag player around if attached to mouse
                 if (this.attachedToMouse) {
-                    this.x = -grid.x+Mouse.x-this.body.width/2;
-                    this.y = -grid.y+Mouse.y-this.body.height/2;
+                    this.x = -grid.x + Mouse.x - this.body.width / 2;
+                    this.y = -grid.y + Mouse.y - this.body.height / 2;
                 }
                 if (this.pressed) {
 
@@ -134,19 +134,28 @@ class PlayerClass {
                     this.pressed = false;
                 }
 
-                if (this.falling) {
-                   this.y += 1.5;
-                }
+                // if (this.falling) {
+                // this.y += 1.5;
+                // }
+            }
+
+        };
+
+        // Top-down view collision detection
+        this.collide_topdown = () => {
+            if (this.active) {
+
             }
         };
 
+        // Standard 2D platformer collision detection
         this.collide = () => {
 
             if (this.active) {
 
                 downline.x = grid.x + this.x;
                 downline.y = grid.y + this.y;
-                //downline.draw(1, "green");
+
 
                 var colidx = 0;
 
