@@ -97,7 +97,7 @@
         var units = new Array();
 
         for (var i = 0; i < 8; i++) {
-            units[i] = new Unit(200,200,0);
+            units[i] = new Unit(200 + Math.random()*50, Math.random()*50,0);
         }
 
         var H2 = 0;
@@ -374,13 +374,17 @@
                     Player.draw();
                     Player.collide_topdown(); // Collide player(s) with the world
 
-                    if (game.ResourcesLoaded)
-                    {
-                        for (var i=0;i<8;i++) {     // Draw units
+                  //  if (game.ResourcesLoaded)
+                   // {
+                        for (var i = 0; i < 8; i++) {     // Draw units
                             units[i].draw();
                         }
-                    }
 
+                        //unit.rotAnim(Mouse.x,Mouse.y, [0,1,2,3], 0, 1, 1, 0);
+                    //}
+
+
+                    unit.draw(Mouse.x,Mouse.y);
 
 
 
