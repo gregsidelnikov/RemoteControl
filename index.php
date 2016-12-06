@@ -376,8 +376,8 @@
                     gfx.globalAlpha = 1;
 
                     // Draw timeline panel
-                    Timeline.process();
-                    Timeline.draw();
+                    //Timeline.process();
+                   // Timeline.draw();
 
                     //room.draw(Mouse.x,Mouse.y);
 
