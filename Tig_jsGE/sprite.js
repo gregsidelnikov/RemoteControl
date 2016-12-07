@@ -21,7 +21,7 @@ var Sprite = function(fn) {
             // Programmer-instantiated sprites are a special case and should be handled separately
             if (fn.substr(0,9) == "resources")
                 window.ResourceId++;
-            //if (SpriteSilentLoad)
+            if (SpriteSilentLoad)
                 console.log("Loaded sprite (" + that.width + "x" + that.height + ") " + fn + " ("+window.ResourceId+" of " + game.resourceNumber + ")");
             if (window.ResourceId >= game.resourceNumber) {
                 game.ResourcesLoaded = true;
