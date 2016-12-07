@@ -100,6 +100,8 @@
             units[i] = new Unit(200 + Math.random()*50, Math.random()*50,0);
         }
 
+        var cursorAngle = 0;
+
         var H2 = 0;
         var A1 = 169;
 
@@ -253,7 +255,7 @@
             gfx.globalAlpha = 1;
             gfx.beginPath();
             gfx.rect(0, 0, $(window).width(), $(window).height());
-            gfx.fillStyle = 'black';
+            gfx.fillStyle = '#000';
             gfx.fill();
         }
 
@@ -374,17 +376,25 @@
                     Player.draw();
                     Player.collide_topdown(); // Collide player(s) with the world
 
-                  //  if (game.ResourcesLoaded)
-                   // {
+                    if (game.ResourcesLoaded)
+                    {
                         for (var i = 0; i < 8; i++) {     // Draw units
-                            units[i].draw();
+                          units[i].draw();
                         }
 
                         //unit.rotAnim(Mouse.x,Mouse.y, [0,1,2,3], 0, 1, 1, 0);
-                    //}
+                        //unit.draw(Mouse.x,Mouse.y);
 
+                        cursor.rotAnim(Mouse.x - 16, Mouse.y - 16, [0], cursorAngle, 32, 4, 0);
 
-                    unit.draw(Mouse.x,Mouse.y);
+                        cursorAngle -= 8;
+                   }
+
+                    if (window.clicked)
+                    {
+                        units[0].moveTo(Mouse.x,Mouse.y);
+                    }
+
 
 
 
@@ -512,7 +522,7 @@
 
             gfx.globalAlpha = 1;
 
-        }, 0);
+        }, 24);
 
 
 
@@ -535,7 +545,7 @@
     .hidecursor { cursor: none; }
 </style>
 <div id = "game_container" class = "noselect" style = "position: relative; margin: 0 auto; padding-top: 0px; padding-bottom: 0px;">
-    <canvas id = "game"></canvas>
+    <canvas id = "game" class = "hidecursor"></canvas>
     <?php include("toolbar.php"); ?>
 </body>
 </html>
